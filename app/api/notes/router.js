@@ -5,8 +5,10 @@ const validator = require('./validator')
 module.exports = (router) => {
 
     router.post('/note', async (req, res) => {
-        await auth.requiresCurrentUser(req)
-        await controller.create(req)
+        // console.log('req', req)
+        await auth.requiresLogin(req)
+        await validator.create(req)
+        await controller.create(req, res)
     })
   
 }
